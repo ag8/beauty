@@ -1,13 +1,13 @@
 package org.ag.ants_utils;
 
-public class IncrementalCell implements Cell {
+public class TripleCell implements Cell {
     private int value;
 
-    public IncrementalCell() {
+    public TripleCell() {
         this.value = 0;
     }
 
-    public IncrementalCell(int value) {
+    public TripleCell(int value) {
         this.value = value;
     }
 
@@ -27,7 +27,7 @@ public class IncrementalCell implements Cell {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        IncrementalCell that = (IncrementalCell) o;
+        TripleCell that = (TripleCell) o;
 
         return value == that.value;
     }

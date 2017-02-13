@@ -1,8 +1,7 @@
 package org.ag.ants;
 
 import org.ag.ants_display.GridDisplayPane;
-import org.ag.ants_utils.BWCell;
-import org.ag.ants_utils.IncrementalCell;
+import org.ag.ants_utils.TripleCell;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +11,7 @@ import java.util.List;
 import static org.ag.ants_utils.Variables.DIM;
 
 class RunBAnt {
-    IncrementalCell[][] grid;
+    TripleCell[][] grid;
     private List<BAnt> ants;
 
     private static final boolean DISPLAY = true;
@@ -20,7 +19,7 @@ class RunBAnt {
     private static final long DELAY = 1;
 
     void run() throws InterruptedException {
-        grid = new IncrementalCell[DIM][DIM];
+        grid = new TripleCell[DIM][DIM];
         ants = new ArrayList<>();
 
         ants.add(new BAnt(DIM / 2, DIM / 2, 0, 2)); // Doesn't matter where since it's a torus
@@ -48,21 +47,23 @@ class RunBAnt {
 
         for (int i = 0; i < DIM; i++) {
             for (int j = 0; j < DIM; j++) {
-                grid[i][j] = new IncrementalCell();
+                grid[i][j] = new TripleCell(2);
             }
         }
 
         for (int step = 0; step < STEPS; step++) {
             for (BAnt ant : ants) {
-                IncrementalCell current = grid[ant.getX()][ant.getY()];
+                TripleCell current = grid[ant.getX()][ant.getY()];
                 List<int[]> listToChange = ant.move(current.getState());
+//                System.out.println("At " + ant.getX() + ", " + ant.getY() + ".");
                 for (int[] toChange : listToChange) {
+//                    System.out.println("\tChanging " + toChange[0] + ", " + toChange[1] + ".");
                     grid[toChange[0]][toChange[1]].increment();
                 }
 
                 if (DISPLAY) {
                     Thread.sleep(DELAY);
-                    frame.setTitle("Langton's Ants! Step " + step + "/" + STEPS + " (Dir = " + ants.get(0).getDirection() + ")");
+                    frame.setTitle("Space colonization! Step " + step + "/" + STEPS + " (Dir = " + ants.get(0).getDirection() + ")");
                     g.draw(grid);
                 }
             }

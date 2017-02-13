@@ -2,7 +2,7 @@ package org.ag.ants_display;
 
 import org.ag.ants.BAnt;
 import org.ag.ants_utils.Cell;
-import org.ag.ants_utils.IncrementalCell;
+import org.ag.ants_utils.TripleCell;
 
 import javax.swing.*;
 import java.awt.*;
@@ -70,8 +70,8 @@ public class GridDisplayPane extends JPanel {
                 g2d.setStroke(new BasicStroke(0));
                 if (grid[i][j] instanceof BAnt) {
                     g2d.setColor(grid[i][j].getState() == 1 ? Color.WHITE : Color.BLACK);
-                } else if (grid[i][j] instanceof IncrementalCell) {
-                    g2d.setColor(new Color(bound(grid[i][j].getState()), bound(grid[i][j].getState()), bound(grid[i][j].getState())));
+                } else if (grid[i][j] instanceof TripleCell) {
+                    g2d.setColor(getColor(grid[i][j].getState()));
                 }
                 g2d.fill(cell);
             }
@@ -84,8 +84,17 @@ public class GridDisplayPane extends JPanel {
         g2d.dispose();
     }
 
-    private int bound(int colorValue) {
-        return colorValue * 85;
+    private Color getColor(int state) {
+//        return new Color(state * 85, state * 85, state * 85);
+        if (state == 0) {
+            return Color.BLACK;
+        } else if (state == 1) {
+            return Color.GRAY;
+        } else if (state == 2) {
+            return Color.WHITE;
+        }
+
+        return Color.BLACK;
     }
 
 }

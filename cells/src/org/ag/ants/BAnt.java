@@ -42,6 +42,8 @@ public class BAnt {
             this.dir.left();
         }
 
+        moveForward();
+
         List<int[]> changed = new ArrayList<>();
         if (this.flavor == 1) {
             changed.add(new int[]{bound(this.x), bound(this.y)});
@@ -60,8 +62,6 @@ public class BAnt {
             changed.add(new int[]{bound(this.x), bound(this.y - 1)});
             changed.add(new int[]{bound(this.x + 1), bound(this.y - 1)});
         }
-
-        moveForward();
 
         return changed;
     }
@@ -109,10 +109,12 @@ public class BAnt {
     }
 
     private int bound(int n) {
-        n = n % DIM;
-        while (n < 0) {
-            n += n;
+        if (n < 0) {
+            n += DIM;
+        } else if (n > DIM - 1) {
+            n -= DIM;
         }
+
         return n;
     }
 }
