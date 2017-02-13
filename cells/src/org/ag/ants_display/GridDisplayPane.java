@@ -85,7 +85,7 @@ public class GridDisplayPane extends JPanel {
     }
 
     private int bound(int colorValue) {
-        return colorValue > 255 ? 255 : colorValue;
+        return colorValue * 85;
     }
 
 }

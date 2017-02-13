@@ -17,6 +17,9 @@ public class IncrementalCell implements Cell {
 
     public void increment() {
         this.value++;
+        if (this.value > 2) {
+            this.value = 0;
+        }
     }
 
     @Override

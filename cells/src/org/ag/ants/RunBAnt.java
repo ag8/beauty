@@ -16,8 +16,8 @@ class RunBAnt {
     private List<BAnt> ants;
 
     private static final boolean DISPLAY = true;
-    private static final int STEPS = 1000000;
-    private static final long DELAY = 1;
+    private static final int STEPS = Integer.MAX_VALUE;
+    private static final long DELAY = 0;
 
     void run() throws InterruptedException {
         grid = new IncrementalCell[DIM][DIM];
