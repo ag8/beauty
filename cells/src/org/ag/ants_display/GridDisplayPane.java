@@ -4,14 +4,18 @@ import org.ag.ants.BAnt;
 import org.ag.ants_utils.Cell;
 import org.ag.ants_utils.TripleCell;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.ag.ants_utils.Variables.DIM;
 
 public class GridDisplayPane extends JPanel {
+    private static final boolean SAVE_TO_IMAGES = true;
     private Cell[][] grid;
     private List<Rectangle> cells;
 
@@ -20,9 +24,21 @@ public class GridDisplayPane extends JPanel {
         cells = new ArrayList<>(DIM * DIM);
     }
 
-    public void draw(Cell[][] grid) {
+    public void draw(Cell[][] grid, int step) {
         this.grid = grid.clone();
         repaint();
+
+        if (SAVE_TO_IMAGES) {
+            System.out.println("Saving to image.");
+            BufferedImage bi = new BufferedImage(this.getSize().width, this.getSize().height, BufferedImage.TYPE_INT_ARGB);
+            Graphics m = bi.createGraphics();
+            this.paint(m);  //this == JComponent
+            m.dispose();
+            try {
+                ImageIO.write(bi, "png", new File("run_images/step" + step + ".png"));
+            } catch (Exception e) {
+            }
+        }
     }
 
     @Override

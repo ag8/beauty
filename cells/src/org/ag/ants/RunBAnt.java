@@ -15,8 +15,8 @@ class RunBAnt {
     private List<BAnt> ants;
 
     private static final boolean DISPLAY = true;
-    private static final int STEPS = Integer.MAX_VALUE;
-    private static final long DELAY = 1;
+    private static final int STEPS = 10000;
+    private static final long DELAY = 10;
 
     void run() throws InterruptedException {
         grid = new TripleCell[DIM][DIM];
@@ -64,7 +64,7 @@ class RunBAnt {
                 if (DISPLAY) {
                     Thread.sleep(DELAY);
                     frame.setTitle("Space colonization! Step " + step + "/" + STEPS + " (Dir = " + ants.get(0).getDirection() + ")");
-                    g.draw(grid);
+                    g.draw(grid, step);
                 }
             }
         }
