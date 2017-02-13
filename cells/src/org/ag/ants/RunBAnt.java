@@ -17,13 +17,16 @@ class RunBAnt {
 
     private static final boolean DISPLAY = true;
     private static final int STEPS = Integer.MAX_VALUE;
-    private static final long DELAY = 0;
+    private static final long DELAY = 1;
 
     void run() throws InterruptedException {
         grid = new IncrementalCell[DIM][DIM];
         ants = new ArrayList<>();
 
         ants.add(new BAnt(DIM / 2, DIM / 2, 0, 2)); // Doesn't matter where since it's a torus
+        ants.add(new BAnt(DIM / 2, DIM / 2, 1, 2)); // Doesn't matter where since it's a torus
+        ants.add(new BAnt(DIM / 2, DIM / 2, 2, 2)); // Doesn't matter where since it's a torus
+        ants.add(new BAnt(DIM / 2, DIM / 2, 3, 2)); // Doesn't matter where since it's a torus
 
 
         JFrame frame = new JFrame("Langton's Ants!");
