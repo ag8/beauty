@@ -1,0 +1,14 @@
+torus:true
+dimensions:10
+#
+#mapping: $val mod n -> direction to turn [R,L,F,B] or face [0,1,2,3]
+Langton's ant:[0,R],[1,L]
+#
+#cells to change, relative to current cell [0,0]
+Langton's ant plus left:[0,0],[-1,0]
+#
+#initial dirs of ants
+[1]
+#
+#initial state of board
+0@
