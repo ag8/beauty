@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fractals!</title>
+
+    <script>
+        function addRule() {
+            let table = document.getElementById("settings");
+            let row = table.insertRow();
+            let cell1 = row.insertCell(0);
+            let cell2 = row.insertCell(1);
+
+            cell1.innerHTML = "Rule 3:";
+            cell2.innerHTML = "<input type=\"text\" name=\"rule3from\" value=\"\" id=\"rule3from\" title=\"rule3from\" size=\"3\" \/> --> <input type=\"text\" name=\"rule3to\" value=\"\" id=\"rule3to\" title=\"rule3to\" size=\"8\" \/>";
+        }
+
+        function save() {
+            document.getElementById("link").href = "https://tinyurl.com/api-create.php?url=" + window.location.href + "";
+        }
+    </script>
+</head>
+<body>
+    <canvas id="canvas" width="1800" height="700">
+        Your browser does not support the canvas element.
+    </canvas>
+
+    <form method="get" target="">
+        <table id="settings">
+            <tr>
+                <th>Number of iterations:</th>
+                <th><input type="number" name="n" value="8" id="n" title="n" /></th>
+            </tr>
+            <tr>
+                <th>Variables:</th>
+                <th><input type="text" name="variables" value="X,Y" id="variables" title="variables" /></th>
+            </tr>
+            <tr>
+                <th>Constants:</th>
+                <th><input type="text" name="constants" value="F,+,-" id="constants" title="constants" /></th>
+            </tr>
+            <tr>
+                <th>Start:</th>
+                <th><input type="text" name="start" value="FX" id="start" title="start" /></th>
+            </tr>
+            <tr>
+                <th>Rule 1:</th>
+                <th><input type="text" name="rule1from" value="X" id="rule1from" title="rule1from" size="3" /> --> <input type="text" name="rule1to" value="X+YF+" id="rule1to" title="rule1to" size="8" /></th>
+            </tr>
+            <tr>
+                <th>Rule 2:</th>
+                <th><input type="text" name="rule2from" value="Y" id="rule2from" title="rule2from" size="3" /> --> <input type="text" name="rule2to" value="-FX-Y" id="rule2to" title="rule2to" size="8" /></th>
+                <!--<th><button onclick="addRule()">Add rule</button></th>-->
+            </tr>
+        </table>
+
+        <input type="submit" value="Go!" />
+    </form>
+
+    <br />
+    <a href="" target="_blank" onclick="save()" id="link">Get direct link</a>
+
+    <script src="main.js"></script>
+</body>
+</html>
